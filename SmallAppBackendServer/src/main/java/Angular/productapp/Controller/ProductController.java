@@ -1,7 +1,8 @@
 package Angular.productapp.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,19 +28,16 @@ public class ProductController {
 	@Autowired
 	ProductRepository repository;
 	
-	@PostMapping("/ProductForm")
-	public Product addProduct(@RequestBody Product product) {
-		Product addproduct = repository.save(new Product(product.getVnamepd(),product.getNpricepd(), product.getVnotepd()));
-		return addproduct;
+	@GetMapping("/products")
+	public List<Product> getAllProducts(){
+		return repository.findAll();
+	}
+	@PostMapping("/products")
+	public Product createProduct(@Valid @RequestBody Product product) {
+		return repository.save(product);
 	}
 
-	@GetMapping("/ViewProduct")
-	public List<Product> viewProduct() {
-		List<Product> viewproducts = new ArrayList<>();
-		repository.findAll().forEach(viewproducts::add);
-		return viewproducts;
-	}
-	@DeleteMapping("/ViewProduct")
+	@DeleteMapping("/products/{id}")
 	public ResponseEntity<String> deleteProduct(@PathVariable("nid") long nid){
 		repository.deleteById(nid);
 		return new ResponseEntity<>("Product has been deleted!", HttpStatus.OK);

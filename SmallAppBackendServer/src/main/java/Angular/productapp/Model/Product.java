@@ -14,13 +14,13 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long nid;
 
-	@Column(name = "VNAMEPD")
+	@Column(name = "VNAMEPD", nullable=false)
 	private String vnamepd;
 
-	@Column(name = "NPRICEPD")
+	@Column(name = "NPRICEPD",nullable=false)
 	private int npricepd;
 
-	@Column(name = "VNOTEPD")
+	@Column(name = "VNOTEPD",nullable=false)
 	private String vnotepd;
 	
 	public Product(String vnamepd, int npricepd, String vnotepd) {

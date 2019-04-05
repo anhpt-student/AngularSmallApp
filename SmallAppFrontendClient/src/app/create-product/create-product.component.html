@@ -1,63 +1,26 @@
-<h1>Add New Product</h1>
-<div [hidden]="submitted">
+<h3>Create Employee</h3>
+<div [hidden]="submitted" style="width: 400px;">
   <form (ngSubmit)="onSubmit()">
-    <table>
-      <tr>
-        <td>Name : </td>
-        <td>
-          <input type="text" id="vnamepd" name="vnamepd" maxlength="30" required [(ngModel)]="product.vnamepd"/>
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Price :</td>
-        <td>
-          <input type="text" id="npricepd" name="npricepd" maxlength="9" required [(ngModel)]="product.npricepd"/>
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Note :</td>
-        <td colspan="2">
-          <input type="text" id="vnotepd" name="vnotepd" style="width: 100%" maxlength="50" [(ngModel)]="product.vnotepd"/>
-        </td>
-      </tr>
-      <tr>
-        <td> </td>
-        <td><input type="submit" value="Save" /></td>
-        <td><input type="button" value="Import CSV" id="checkAndImport" /></td>
-      </tr>
-    </table>
-    <div style="margin-top:20px">
-      <input type="file" id="selectFile" name="selectFile" style="display: none;" accept=".csv" />
-      <span>
-        <button type="button" id="file_select_icon">
-          <span aria-hidden="true">Open file CSV</span>
-        </button>
-      </span>
-      <input type="text" id="file_name" placeholder="Select file ..." value="${fileName}" readonly style="width:400px">
-      ${file}
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" class="form-control" id="vnamepd" required [(ngModel)]="product.vnamepd" name="vnamepd" maxlength="30">
     </div>
+
+    <div class="form-group">
+      <label for="name">Product Price</label>
+      <input type="text" class="form-control" id="npricepd" required [(ngModel)]="product.npricepd" name="npricepd" maxlength="9">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Note</label>
+      <input type="text" class="form-control" id="vnotepd" required [(ngModel)]="product.vnotepd" name="vnotepd" maxlength="50">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
   </form>
 </div>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript">
 
-$('#file_select_icon').on('click', function() {
-    $('#selectFile').click();
-});
-
-$('#selectFile').on('change', function() {
-    $('#file_name').val($('#selectFile').prop('files')[0].name);
-});
-
-$('#checkAndImport').on('click', function() {
-	var fileExist = $("#file_name").val();
-	if(fileExist == null || fileExist == ""){
-		alert("Let's selecting a csv file.");
-	} else {
-		$('#insertProduct').submit();
-	}
-	
-});
-</script>
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <button class="btn btn-success" (click)="newProduct()">Add</button> 
+</div>

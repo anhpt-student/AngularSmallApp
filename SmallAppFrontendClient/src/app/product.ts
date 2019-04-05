@@ -3,4 +3,5 @@ export class Product {
     vnamepd: string;
     npricedb: number;
     vnotepd: string;
+    active: boolean;
 }

@@ -1,8 +1,22 @@
-<tr>
-	<td>{{product.nid}}</td>
-	<td>{{product.vnamepd}}</td>
-	<td>{{product.npricepd}}</td>
-	<td>{{product.vnotepd}}</td>
-	<td>
-		<span class="button is-small btn-danger" (click)='deleteProduct()'>Delete</span></td>
-</tr>
+<div *ngIf="product">
+  <div>
+    <label>Product Name </label> {{product.vnamepd}}
+  </div>
+  <div>
+    <label>Product Price </label> {{product.npricepd}}
+  </div>
+  <div>
+    <label>Note </label> {{product.vnotepd}}
+  </div>
+  <div>
+    <label>Active: </label> {{product.active}}
+  </div>
+
+  <span class="button is-small btn-primary" *ngIf='product.active' (click)='updateActive(false)'>Inactive</span>
+
+  <span class="button is-small btn-primary" *ngIf='!product.active' (click)='updateActive(true)'>Active</span>
+
+  <span class="button is-small btn-danger" (click)='deleteProduct()'>Delete</span>
+
+  <hr/>
+</div>

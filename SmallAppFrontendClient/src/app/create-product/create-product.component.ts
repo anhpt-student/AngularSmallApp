@@ -3,7 +3,7 @@ import { Product } from '../product';
 import { ProductService } from '../product.service';
 
 @Component({
-  selector: 'create-product',
+  selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css']
 })
@@ -14,12 +14,12 @@ export class CreateProductComponent implements OnInit {
 
   ngOnInit() {
   }
-  newProduct(): void{
+  newProduct(): void {
     this.submitted = false;
     this.product = new Product();
   }
   save(){
-    this.productService.addProduct(this.product)
+    this.productService.createProduct(this.product)
     .subscribe(data => console.log(data), error => console.log(error));
     this.product = new Product();
   }
