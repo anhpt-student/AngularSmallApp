@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products | async">
-          <td>{{product.vanmepd}}</td>
+          <td>{{product.vnamepd}}</td>
           <td>{{product.npricepd}}</td>
           <td>{{product.vnotepd}}</td>
           <td><button (click)="deleteProduct(product.nid)">Delete</button>
